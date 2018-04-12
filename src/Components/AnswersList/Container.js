@@ -8,7 +8,7 @@ import Component from './Component';
 
 const mapStateToProps = state => ({
   user: state.user,
-  sortBy: state.sortBy
+  sortBy: state.answerSort
   // TODO: CODE FOR YOUR HOMEWORK HERE
 });
 
