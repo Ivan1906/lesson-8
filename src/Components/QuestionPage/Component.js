@@ -30,7 +30,10 @@ const SortByDropdown = styled.select`
 `;
 
 
-const QuestionPage = ({ question, author, setAnswerSorting, sortBy }) => (
+const QuestionPage = ({ question, author, setAnswerSorting, sortBy }) =>{ 
+  console.log(setAnswerSorting);
+  console.log(sortBy);
+  return(
   <Wrapper>
     <Title>{question.title}</Title>
 
@@ -51,7 +54,7 @@ const QuestionPage = ({ question, author, setAnswerSorting, sortBy }) => (
 
     <NewAnswer />
   </Wrapper>
-);
+);}
 
 
 export default QuestionPage;

@@ -31,7 +31,8 @@ const enhance = compose(
         votes = votes.filter(vote => answerIds.includes(vote.answerId));
 
         const users = await db.users.find();
-
+console.log('AnswerList');
+console.log(answers);
         this.setState({ answers, votes, users, isFetching: false });
       });
     },

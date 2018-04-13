@@ -106,9 +106,10 @@ const divideByAnswerId = (votes, answerId) => divideVotes(votesByAnswerId(votes,
 const getAuthor = (users, authorId) => users.find(user => user._id === authorId)
   || { profile: { fullName: 'Anonymous' } };
 
-const AnswersList = ({ answers, votes, users, onVote, user }) => (
+const AnswersList = ({ answers, votes, users, onVote, user, answerSort }) => (
   <Answers>
     {answers.map(answer => {
+      console.log(answerSort);
       const { positive, negative } = divideByAnswerId(votes, answer._id);
       const author = getAuthor(users, answer.createdById);
       return (
