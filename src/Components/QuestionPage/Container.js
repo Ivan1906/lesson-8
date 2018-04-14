@@ -35,7 +35,7 @@ const enhance = compose(
         if (question) {
           author = await db.users.findOne(question.createdById);
         }
-console.log('QuestionPage');
+
         this.setState({ question, author, isFetching: false });
       },
     }),
