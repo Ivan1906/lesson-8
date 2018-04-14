@@ -106,10 +106,33 @@ const divideByAnswerId = (votes, answerId) => divideVotes(votesByAnswerId(votes,
 const getAuthor = (users, authorId) => users.find(user => user._id === authorId)
   || { profile: { fullName: 'Anonymous' } };
 
-const AnswersList = ({ answers, votes, users, onVote, user, answerSort }) => (
+const sortByKey = (array, key) => array.sort((a, b) => 
+  a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0);
+
+const sortAnswersBy = (answers, votes, answerSortBy) => {
+  let newAnswers = answers.reduce((previousValue, currentItem) => {
+    const { positive, negative } = divideByAnswerId(votes, currentItem._id);
+    currentItem['best'] = positive;
+    currentItem['worst'] = negative;
+    previousValue.push(currentItem);
+    return previousValue;
+  }, []);
+
+  switch(answerSortBy) {
+    case 'createdAt':
+      return sortByKey(newAnswers, 'createdAt');
+    case 'best':
+      return sortByKey(newAnswers, 'best');
+    case 'worst':
+      return sortByKey(newAnswers, 'worst');
+    default:
+      return []
+  }
+}
+
+const AnswersList = ({ answers, votes, users, onVote, user, answerSortBy }) => (
   <Answers>
-    {answers.map(answer => {
-      console.log(answerSort);
+    {sortAnswersBy(answers, votes, answerSortBy).map(answer => {
       const { positive, negative } = divideByAnswerId(votes, answer._id);
       const author = getAuthor(users, answer.createdById);
       return (

@@ -46,7 +46,7 @@ const Header = (
       // Works this way
       onChange={(e) => { changeSearchValue(e.target.value) }}
     />
-
+    
     <StyledButton onClick={clearSearchValue}>Clear</StyledButton>
 
     <SortByDropdown
